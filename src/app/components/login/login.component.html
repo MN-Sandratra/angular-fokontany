@@ -1,0 +1,149 @@
+<div class="login-container row">
+    <div class="col-lg-6 text-center d-flex align-items-center">
+        <div class="w-100">
+            <img src="assets/images/cua.png" alt="" width="40%">
+        </div>
+    </div>
+    <div class="col-lg-6 d-flex align-items-center">
+        <mat-card class="mx-auto box-login pe-5 ps-5">
+            <h1 class="text-center fokontany-color">Connexion</h1>
+            <form class="row mb-3" (ngSubmit)="onSubmitLogin()" [formGroup]="loginform">
+                <mat-form-field appearance="legacy" floatLabel="auto" class="mb-3" [hideRequiredMarker]="true">
+                    <mat-label>Identifiant ou adresse email</mat-label>
+                    <input matInput required [formControl]="user">
+                    <mat-error *ngIf="user.invalid">{{getErrorMessage(user)}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy" floatLabel="auto" class="mb-3" [hideRequiredMarker]="true">
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" required [formControl]="password">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon class="text-gray">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="password.invalid">{{getErrorMessage(password)}}</mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button type="submit" class="btn-fk-color" data-bs-dismiss="modal">
+                    SE CONNECTER</button>
+
+            </form>
+            <p class="mat-body text-gray text-center">Pas de compte ? <span class="sign" data-bs-toggle="modal"
+                    data-bs-target="#inscriptionModal" data-bs-dismiss="modal">S'inscrire</span></p>
+        </mat-card>
+    </div>
+</div>
+
+<!-- Modal Inscription -->
+<div class="modal fade" id="inscriptionModal" tabindex="-1" aria-labelledby="inscriptionModalLabel" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- <div class="modal-header border-0">
+                <h2 class="modal-title" id="inscriptionModalLabel"></h2>
+            </div> -->
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-center mb-1">
+                        <img src="assets/images/cua.png" alt="" width="70" height="70" class="img-fluid">
+                    </div>
+                    <h1 class="text-center fokontany-color">Inscription</h1>
+                    <form class="row" (ngSubmit)="onSubmitInscription()" [formGroup]="inscriptionform">
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Nom(s)</mat-label>
+                            <input matInput required [formControl]="nom">
+                            <mat-error *ngIf="nom.invalid">{{getErrorMessage(nom)}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Prénom(s)</mat-label>
+                            <input matInput required [formControl]="prenom">
+                            <mat-error *ngIf="prenom.invalid">{{getErrorMessage(prenom)}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Email</mat-label>
+                            <input matInput required [formControl]="email">
+                            <mat-error *ngIf="email.invalid">{{getEmailError()}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true"
+                            minlength="10">
+                            <mat-label>Contact</mat-label>
+                            <input matInput required [formControl]="contact">
+                            <mat-error *ngIf="contact.invalid">{{getContactError()}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Adresse</mat-label>
+                            <input matInput required [formControl]="adresse">
+                            <mat-error *ngIf="adresse.invalid">{{getErrorMessage(adresse)}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-2" [hideRequiredMarker]="true">
+                            <mat-label>Commune</mat-label>
+                            <input matInput required [formControl]="commune">
+                            <mat-error *ngIf="commune.invalid">{{getErrorMessage(commune)}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Profession</mat-label>
+                            <input matInput required [formControl]="profession">
+                            <mat-error *ngIf="profession.invalid">{{getErrorMessage(profession)}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-radio-group aria-label="Select an option" formControlName="sexe"
+                            class="col-lg-6 mb-3 d-flex justify-content-between align-items-center">
+                            <label for="" class="text-gray">Sexe</label>
+                            <mat-radio-button [value]="true" class="text-gray" [checked]="true">Masculin
+                            </mat-radio-button>
+                            <mat-radio-button [value]="false" class="text-gray">Femme
+                            </mat-radio-button>
+                        </mat-radio-group>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Nom d'utilisateur</mat-label>
+                            <input matInput required [formControl]="username">
+                            <mat-error *ngIf="username.invalid">{{getErrorMessage(username)}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true"
+                            minlength="12">
+                            <mat-label>CIN</mat-label>
+                            <input matInput required [formControl]="cin">
+                            <mat-error *ngIf="cin.invalid">{{getCinError()}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput minlength="7" [type]="hide ? 'password' : 'text'" required
+                                [formControl]="password_insc">
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon class="text-gray">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="password_insc.invalid">{{getPasswordError(password_insc)}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
+                            <mat-label>Confirmation mot de passe</mat-label>
+                            <input matInput minlength="7" [type]="hide_conf ? 'password' : 'text'" required
+                                [formControl]="password_insc_conf">
+                            <button type="button" mat-icon-button matSuffix (click)="hide_conf = !hide_conf"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon class="text-gray">{{hide_conf ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="password_insc_conf.invalid">{{getPasswordConfError()}}
+                            </mat-error>
+                        </mat-form-field>
+
+                        <div class="col-lg-12 d-flex justify-content-end">
+                            <button mat-raised-button type="submit" class="btn-fk-color me-2">INSCRIPTION</button>
+                            <button mat-raised-button type="button" data-bs-dismiss="modal"
+                                id="closeInsc">FERMER</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
