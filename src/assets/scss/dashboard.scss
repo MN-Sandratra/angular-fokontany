@@ -5684,8 +5684,8 @@
     display: block;
   }
   
-  .nav-sidebar .menu-open > .nav-link i.right,
-  .nav-sidebar .menu-is-opening > .nav-link i.right {
+  .nav-sidebar .menu-open > .nav-link .right,
+  .nav-sidebar .menu-is-opening > .nav-link .right {
     -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
   }
