@@ -3,3 +3,8 @@
 <app-sidebar
     class="main-sidebar sidebar-light-purple elevation-4"
 ></app-sidebar>
+<div class="content-wrapper">
+    <router-outlet></router-outlet>
+    
+<aside class="control-sidebar control-sidebar-dark"></aside>
+<div id="sidebar-overlay" (click)="toggleMenuSidebar()"></div>

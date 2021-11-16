@@ -1,7 +1,7 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import {filter} from 'rxjs/operators';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {faBars,faTachometerAlt,faAngleLeft} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menu-item',
@@ -15,7 +15,11 @@ export class MenuItemComponent implements OnInit {
     @HostBinding('class.menu-open') isMenuExtended: boolean = false;
     public isMainActive: boolean = false;
     public isOneOfChildrenActive: boolean = false;
+
+    //font awesome
     fabars=faBars;
+    tachometer=faTachometerAlt;
+    angleLeft=faAngleLeft;
 
     constructor(private router: Router) {}
 

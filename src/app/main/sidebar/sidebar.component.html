@@ -1,9 +1,9 @@
 <!-- Brand Logo -->
 <a [routerLink]="['/']" class="brand-link">
     <img
-        src="assets/img/logo.png"
-        alt="AdminLTE Logo"
-        class="brand-image img-circle elevation-3"
+        src="assets/images/cua.png"
+        alt="fokontany"
+        class="brand-image img-circle"
         style="opacity: 0.8"
     />
     <span class="brand-text font-weight-light">Fokontany</span>
@@ -14,11 +14,12 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img
+            <!-- <img
                 [src]="user.picture || 'assets/img/default-profile.png'"
-                class="img-circle elevation-2"
+                    class="img-circle elevation-2"
                 alt="User Image"
-            />
+            /> -->
+            <fa-icon [icon]="myadmin" size="lg" [fixedWidth]="true" class="img-circle"></fa-icon>
         </div>
         <div class="info">
             <a [routerLink]="['/profile']" class="d-block">

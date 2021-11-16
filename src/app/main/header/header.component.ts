@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {faBars,faSearch,faPowerOff} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,8 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent implements OnInit {
   @Output() toggleMenuSidebar: EventEmitter<any> = new EventEmitter<any>();
   faBars=faBars;
+  faSearch=faSearch;
+  fapoweroff=faPowerOff;
 
   constructor() { }
 
