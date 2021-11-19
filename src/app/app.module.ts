@@ -12,11 +12,19 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 import { LoginComponent } from './components/login/login.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MainComponent } from './main/main.component';
+import { SidebarComponent } from './main/sidebar/sidebar.component';
+import { HeaderComponent } from './main/header/header.component';
+import { MenuItemComponent } from './main/menu-item/menu-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent,
+    SidebarComponent,
+    HeaderComponent,
+    MenuItemComponent
   ],
   imports: [
     BrowserModule,
