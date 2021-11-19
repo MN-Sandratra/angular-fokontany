@@ -113,7 +113,7 @@ export class LoginComponent implements OnInit {
 
   onSubmitLogin() {
     if (this.loginform.valid) {
-     
+     this.openSnackBarSuccess("Connexion réussie", "Fermer");
     }
     else {
       this.openSnackBarError("Erreur", "Fermer");
