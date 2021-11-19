@@ -16,6 +16,7 @@ import { MainComponent } from './main/main.component';
 import { SidebarComponent } from './main/sidebar/sidebar.component';
 import { HeaderComponent } from './main/header/header.component';
 import { MenuItemComponent } from './main/menu-item/menu-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MenuItemComponent } from './main/menu-item/menu-item.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
