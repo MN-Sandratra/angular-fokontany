@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
   password_insc_conf = new FormControl('', [Validators.required]);
   inscriptionform = new FormGroup({ nom: this.nom, prenom: this.prenom, email: this.email,contact: this.contact, adresse: this.adresse, commune:this.commune, profession: this.profession, sexe: this.sexe, ddn: this.ddn, username: this.username, cin:this.cin,password: this.password_insc, passconf:this.password_insc_conf });
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar, private route : Router) { }
 
   getErrorMessage(champ: FormControl) {
     if (champ.hasError('required')) {
@@ -114,6 +115,7 @@ export class LoginComponent implements OnInit {
   onSubmitLogin() {
     if (this.loginform.valid) {
      this.openSnackBarSuccess("Connexion réussie", "Fermer");
+     this.route.navigate(['/dashboard'])
     }
     else {
       this.openSnackBarError("Erreur", "Fermer");
