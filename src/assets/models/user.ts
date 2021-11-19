@@ -1,13 +1,14 @@
 export class User {
-    nom!:String;
-    prenom!:String;
-    telephone!:String;
+    lastname!:String;
+    firstname!:String;
+    phone!:String;
     email!:String;
-    adresse!:String;
-    commune!:String;
+    address!:String;
+    fokontany!:String;
     username!:String;
     cin!:String;
     password!:String;
+    maritalStatus!:String;
     status!:String;
-    sexe!:Boolean;
+    sex!:String;
 }

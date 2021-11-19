@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/assets/models/user';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +11,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  allUser : User[] = [];
+
+  sex_list = ['Homme', 'Femme'];
+
+  statut_marital_list = ['Célibataire', 'Marié(e)', 'Divorcé(e)', 'Veuf(ve)'];
 
   hide = true;
 
@@ -27,16 +35,16 @@ export class LoginComponent implements OnInit {
   contact = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(10), Validators.minLength(10)]);
   cin = new FormControl('', [Validators.required, Validators.pattern("^[0-9]*$"),Validators.maxLength(12), Validators.minLength(12)]);
   adresse = new FormControl('', Validators.required);
-  commune = new FormControl('', Validators.required);
-  profession = new FormControl('', Validators.required);
+  fokontany = new FormControl('', Validators.required);
+  statut_marital = new FormControl('', Validators.required);
   sexe = new FormControl('true', Validators.required);
   ddn = new FormControl('', Validators.required);
   username = new FormControl('', Validators.required);
   password_insc = new FormControl('', [Validators.required , Validators.minLength(7)]);
   password_insc_conf = new FormControl('', [Validators.required]);
-  inscriptionform = new FormGroup({ nom: this.nom, prenom: this.prenom, email: this.email,contact: this.contact, adresse: this.adresse, commune:this.commune, profession: this.profession, sexe: this.sexe, ddn: this.ddn, username: this.username, cin:this.cin,password: this.password_insc, passconf:this.password_insc_conf });
+  inscriptionform = new FormGroup({ nom: this.nom, prenom: this.prenom, email: this.email,contact: this.contact, adresse: this.adresse, fokontany:this.fokontany, statut_marital: this.statut_marital, sexe: this.sexe, ddn: this.ddn, username: this.username, cin:this.cin,password: this.password_insc, passconf:this.password_insc_conf });
 
-  constructor(private snackBar: MatSnackBar, private route : Router) { }
+  constructor(private snackBar: MatSnackBar, private route: Router, private apiUser: UserService) { }
 
   getErrorMessage(champ: FormControl) {
     if (champ.hasError('required')) {
@@ -114,23 +122,79 @@ export class LoginComponent implements OnInit {
 
   onSubmitLogin() {
     if (this.loginform.valid) {
-     this.openSnackBarSuccess("Connexion réussie", "Fermer");
-     this.route.navigate(['/dashboard'])
-    }
-    else {
-      this.openSnackBarError("Erreur", "Fermer");
+      var user: any = this.allUser.find(
+        x => ((x.username === this.user.value) || (x.email === this.user.value)) && (x.password === this.password.value)
+      );
+
+      if (user !== undefined) {
+        this.openSnackBarSuccess("Connexion réussie", "Fermer");
+        this.route.navigate(['/dashboard'])
+      }
+      else {
+        this.openSnackBarError("Erreur", "Fermer");
+      }
     }
   }
 
   onSubmitInscription() {
     if (this.inscriptionform.valid) {
-      
+      this.createUser();
     }
+  }
+
+  createUser() {
+    var myUser = new User();
+    myUser = {
+      lastname: this.nom.value,
+      firstname: this.prenom.value,
+      address: this.adresse.value,
+      fokontany: this.fokontany.value,
+      phone: this.contact.value,
+      email: this.email.value,
+      cin: this.cin.value,
+      password: this.password_insc.value,
+      status: "Client",
+      username: this.username.value,
+      maritalStatus: this.statut_marital.value,
+      sex: this.sexe.value
+    }
+    this.apiUser.createUser(myUser).subscribe(
+      data => {
+        this.openSnackBarSuccess("Inscription réussie", "Fermer")
+        // location.reload();
+        this.apiUser.getAllUser().subscribe(
+        data => {
+          this.allUser = data;
+          // var btn = document.getElementById("connecter");
+          var btnClose = document.getElementById("closeInsc");
+          btnClose?.click();
+          // btn?.click();
+        },
+        err => {
+          console.log(err)
+        })
+      }, err => {
+        console.log(err);
+        this.openSnackBarError("Erreur de l'inscription", "Fermer")
+      }
+    )
+  }
+
+  getUserData() {
+
+    this.apiUser.getAllUser().subscribe(
+      data => {
+        this.allUser = data;
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
 
   ngOnInit(): void {
-   
+    this.getUserData();
   }
 
 }

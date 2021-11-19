@@ -87,16 +87,33 @@
                         </mat-form-field>
 
                         <mat-form-field appearance="legacy" class="col-lg-6 mb-2" [hideRequiredMarker]="true">
-                            <mat-label>Commune</mat-label>
-                            <input matInput required [formControl]="commune">
-                            <mat-error *ngIf="commune.invalid">{{getErrorMessage(commune)}}</mat-error>
+                            <mat-label>Fokontany</mat-label>
+                            <input matInput required [formControl]="fokontany">
+                            <mat-error *ngIf="fokontany.invalid">{{getErrorMessage(fokontany)}}</mat-error>
                         </mat-form-field>
 
-                        <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
-                            <mat-label>Profession</mat-label>
-                            <input matInput required [formControl]="profession">
-                            <mat-error *ngIf="profession.invalid">{{getErrorMessage(profession)}}</mat-error>
+                        <mat-form-field appearance="legacy" floatLabel="auto" class="col-lg-6 mb-1"
+                            [hideRequiredMarker]="true">
+                            <mat-select placeholder="Sexe" [formControl]="sexe">
+                                <mat-option class="" *ngFor="let item of sex_list" [value]="item">
+                                    {{item}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="sexe.invalid">{{getErrorMessage(sexe)}}
+                            </mat-error>
                         </mat-form-field>
+
+                        <mat-form-field appearance="legacy" floatLabel="auto" class="col-lg-6 mb-1"
+                            [hideRequiredMarker]="true">
+                            <mat-select placeholder="Statut marital" [formControl]="statut_marital">
+                                <mat-option class="" *ngFor="let item of statut_marital_list" [value]="item">
+                                    {{item}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="statut_marital.invalid">{{getErrorMessage(statut_marital)}}
+                            </mat-error>
+                        </mat-form-field>
+
 
                         <!-- <mat-radio-group aria-label="Select an option" formControlName="sexe"
                             class="col-lg-6 mb-3 d-flex justify-content-between align-items-center">

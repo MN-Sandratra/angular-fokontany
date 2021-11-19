@@ -47,11 +47,13 @@ body {
 
 .mat-focused .mat-form-field-label {
   color: var(--main-color) !important;
+  font-weight: normal !important;
 }
 
 .mat-form-field-label,
 .text-gray {
   color: #999999 !important;
+  font-weight: normal !important;
 }
 
 .mat-form-field-underline {
