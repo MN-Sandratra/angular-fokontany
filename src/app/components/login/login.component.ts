@@ -29,10 +29,11 @@ export class LoginComponent implements OnInit {
   commune = new FormControl('', Validators.required);
   profession = new FormControl('', Validators.required);
   sexe = new FormControl('true', Validators.required);
+  ddn = new FormControl('', Validators.required);
   username = new FormControl('', Validators.required);
   password_insc = new FormControl('', [Validators.required , Validators.minLength(7)]);
   password_insc_conf = new FormControl('', [Validators.required]);
-  inscriptionform = new FormGroup({ nom: this.nom, prenom: this.prenom, email: this.email,contact: this.contact, adresse: this.adresse, commune:this.commune, profession: this.profession, sexe: this.sexe, username: this.username, cin:this.cin,password: this.password_insc, passconf:this.password_insc_conf });
+  inscriptionform = new FormGroup({ nom: this.nom, prenom: this.prenom, email: this.email,contact: this.contact, adresse: this.adresse, commune:this.commune, profession: this.profession, sexe: this.sexe, ddn: this.ddn, username: this.username, cin:this.cin,password: this.password_insc, passconf:this.password_insc_conf });
 
   constructor(private snackBar: MatSnackBar) { }
 

@@ -26,6 +26,10 @@
   }
 }
 
+.fokontany-color {
+  color: #8c00ff !important;
+}
+
 .btn-fk-color {
   background: #8c00ff !important;
   color: #fff;
@@ -55,4 +59,12 @@
   background: #ff6600;
   z-index: -1;
   clip-path: polygon(88% 85%, 100% 33%, 77% 74%, 0% 100%);
+}
+
+svg#clouds {
+  position: fixed;
+  bottom: -160px;
+  left: -230px;
+  z-index: -10;
+  width: 1920px;
 }

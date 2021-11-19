@@ -1,15 +1,15 @@
 <nav class="navbar navbar-light bg-light fknav">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="assets/images/cua.png" alt="" width="50" height="50" class="d-inline-block align-text-center">
-            Fokontany
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="assets/images/logo-top.png" alt="" width="12%">
+            <span style="font-size: large; padding-top: 10px; padding-left: 2px;">Fokontany</span>
         </a>
     </div>
 </nav>
 
 <div class="login-container row">
     <div class="col-lg-6 text-center d-none d-lg-block my-auto">
-        <img src="assets/images/cua.png" alt="" width="40%">
+        <img src="assets/images/logo-nobg.png" alt="" width="60%">
     </div>
     <div class="col-lg-6 d-flex align-items-center">
         <mat-card class="mx-auto box-login pe-5 ps-5">
@@ -51,7 +51,7 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-center mb-1">
-                        <img src="assets/images/cua.png" alt="" width="70" height="70" class="img-fluid">
+                        <img src="assets/images/logo-top.png" alt="" width="70" height="70" class="img-fluid">
                     </div>
                     <h1 class="text-center fokontany-color">Inscription</h1>
                     <form class="row" (ngSubmit)="onSubmitInscription()" [formGroup]="inscriptionform">
@@ -98,14 +98,24 @@
                             <mat-error *ngIf="profession.invalid">{{getErrorMessage(profession)}}</mat-error>
                         </mat-form-field>
 
-                        <mat-radio-group aria-label="Select an option" formControlName="sexe"
+                        <!-- <mat-radio-group aria-label="Select an option" formControlName="sexe"
                             class="col-lg-6 mb-3 d-flex justify-content-between align-items-center">
                             <label for="" class="text-gray">Sexe</label>
                             <mat-radio-button [value]="true" class="text-gray" [checked]="true">Masculin
                             </mat-radio-button>
                             <mat-radio-button [value]="false" class="text-gray">Femme
                             </mat-radio-button>
-                        </mat-radio-group>
+                        </mat-radio-group> -->
+
+                        <mat-form-field class="col-lg-6 mb-3" appearance="legacy" [hideRequiredMarker]="true">
+                            <mat-label>Date de naissance</mat-label>
+                            <input matInput [matDatepicker]="picker" [formControl]="ddn">
+                            <mat-datepicker-toggle matSuffix [for]="picker">
+                                <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="ddn.invalid">{{getErrorMessage(ddn)}}</mat-error>
+                        </mat-form-field>
 
                         <mat-form-field appearance="legacy" class="col-lg-6 mb-1" [hideRequiredMarker]="true">
                             <mat-label>Nom d'utilisateur</mat-label>
@@ -154,3 +164,10 @@
         </div>
     </div>
 </div>
+
+<svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
+    <title>Gray Clouds Background</title>
+    <path id="Path_39" data-name="Path 39"
+        d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z"
+        transform="translate(142.69 -634.312)" fill="#eee" />
+</svg>
