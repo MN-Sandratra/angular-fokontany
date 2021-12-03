@@ -1,10 +1,41 @@
 <app-header (toggleMenuSidebar)="toggleMenuSidebar()"></app-header>
 
-<app-sidebar
-    class="main-sidebar sidebar-light-purple elevation-4"
-></app-sidebar>
+<app-sidebar class="main-sidebar sidebar-light-purple elevation-4"></app-sidebar>
 <div class="content-wrapper">
     <router-outlet></router-outlet>
-    
-<aside class="control-sidebar control-sidebar-dark"></aside>
-<div id="sidebar-overlay" (click)="toggleMenuSidebar()"></div>
+
+    <!-- Tableau Fokontany -->
+
+    <mat-card class="">
+        <mat-card-content class="text-gray">
+            <mat-form-field appearance="standard">
+                <mat-label>Filtre</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Antananarivo" #input>
+            </mat-form-field>
+            <div class="mat-elevation-z8 ">
+
+                <table mat-table [dataSource]="dataSource" class="w-100" matSort multiTemplateDataRows>
+                    <ng-container matColumnDef="libellé">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fokontany </th>
+                        <td mat-cell *matCellDef="let element"> {{element.commune}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">Aucune donnée correspond à "{{input.value}}"
+                        </td>
+                    </tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users">
+                </mat-paginator>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+
+    <!-- ======== -->
+
+    <aside class="control-sidebar control-sidebar-dark"></aside>
+    <div id="sidebar-overlay" (click)="toggleMenuSidebar()"></div>
