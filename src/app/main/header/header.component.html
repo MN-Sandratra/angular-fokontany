@@ -6,7 +6,7 @@
             </a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a [routerLink]="['/']" class="nav-link">Home</a>
+            <a [routerLink]="['/blank']" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a [routerLink]="['/blank']" class="nav-link">Contact</a>
@@ -26,6 +26,6 @@
     </form>
 
     <ul class="navbar-nav ml-auto">
-        <fa-icon [icon]="fapoweroff" size="lg" [fixedWidth]="true" class="poweroff" [routerLink]="['/']"></fa-icon>
+        <fa-icon [icon]="fapoweroff" size="lg" [fixedWidth]="true" class="poweroff" (click)="deconnection()"></fa-icon>
     </ul>
 </nav>

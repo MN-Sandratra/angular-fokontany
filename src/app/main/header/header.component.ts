@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {faBars,faSearch,faPowerOff} from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/authentification/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,13 @@ export class HeaderComponent implements OnInit {
   faSearch=faSearch;
   fapoweroff=faPowerOff;
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
     
+  }
+  deconnection=()=>{
+    this.authService.logout()
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faTachometerAlt,faUsersCog, faUsers, faCertificate, faHome, faLifeRing, faUserFriends, faShieldAlt, faUserNinja} from '@fortawesome/free-solid-svg-icons'
+import { AuthService } from 'src/app/authentification/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,9 +14,9 @@ export class SidebarComponent implements OnInit {
     name: 'Admin',
     picture: ''
   }
-  public user = this.myUser;
+  public user = this.authService.loggedUser;
   public menu = MENU;
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +26,7 @@ export const MENU = [
   {
     name: 'Dashboard',
     icon:faTachometerAlt,
-    path: ['/']
+    path: ['/oui']
   },
   {
     name: 'Fokontany',

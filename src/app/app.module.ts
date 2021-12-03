@@ -17,6 +17,8 @@ import { SidebarComponent } from './main/sidebar/sidebar.component';
 import { HeaderComponent } from './main/header/header.component';
 import { MenuItemComponent } from './main/menu-item/menu-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './authentification/auth.guard';
+import { AuthService } from './authentification/auth.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDatepickerModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

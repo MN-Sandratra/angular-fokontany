@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/authentification/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/assets/models/user';
 
@@ -44,7 +45,7 @@ export class LoginComponent implements OnInit {
   password_insc_conf = new FormControl('', [Validators.required]);
   inscriptionform = new FormGroup({ nom: this.nom, prenom: this.prenom, email: this.email,contact: this.contact, adresse: this.adresse, fokontany:this.fokontany, statut_marital: this.statut_marital, sexe: this.sexe, ddn: this.ddn, username: this.username, cin:this.cin,password: this.password_insc, passconf:this.password_insc_conf });
 
-  constructor(private snackBar: MatSnackBar, private route: Router, private apiUser: UserService) { }
+  constructor(private snackBar: MatSnackBar, private route: Router, private apiUser: UserService,private authService:AuthService) { }
 
   getErrorMessage(champ: FormControl) {
     if (champ.hasError('required')) {
@@ -122,17 +123,25 @@ export class LoginComponent implements OnInit {
 
   onSubmitLogin() {
     if (this.loginform.valid) {
-      var user: any = this.allUser.find(
-        x => ((x.username === this.user.value) || (x.email === this.user.value)) && (x.password === this.password.value)
-      );
+      // var user: any = this.allUser.find(
+      //   x => ((x.username === this.user.value) || (x.email === this.user.value)) && (x.password === this.password.value)
+      // );
 
-      if (user !== undefined) {
+      // if (user !== undefined) {
+      //   this.openSnackBarSuccess("Connexion réussie", "Fermer");
+      //   this.route.navigate(['/dashboard'])
+      // }
+      // else {
+      //   this.openSnackBarError("Erreur", "Fermer");
+      // }
+      this.authService.login(this.user.value,this.password.value)
+      if(this.authService.loggedUser!==undefined){
+        console.log(this.authService.loggedUser);
         this.openSnackBarSuccess("Connexion réussie", "Fermer");
-        this.route.navigate(['/dashboard'])
-      }
-      else {
+      }else{
         this.openSnackBarError("Erreur", "Fermer");
       }
+      
     }
   }
 
