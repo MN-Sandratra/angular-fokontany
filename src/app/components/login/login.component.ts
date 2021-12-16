@@ -135,12 +135,14 @@ export class LoginComponent implements OnInit {
       //   this.openSnackBarError("Erreur", "Fermer");
       // }
       this.authService.login(this.user.value,this.password.value)
-      if(this.authService.loggedUser!==undefined){
-        console.log(this.authService.loggedUser);
-        this.openSnackBarSuccess("Connexion réussie", "Fermer");
-      }else{
-        this.openSnackBarError("Erreur", "Fermer");
-      }
+
+      // console.log(this.authService.loggedUser);
+      // if(this.authService.loggedUser!==undefined){
+        
+      //   this.openSnackBarSuccess("Connexion réussie", "Fermer");
+      // }else{
+      //   this.openSnackBarError("Erreur", "Fermer");
+      // }
       
     }
   }

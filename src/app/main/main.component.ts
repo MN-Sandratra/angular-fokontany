@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
 
   displayedColumns: string[] = ['libellé'];
 
-  dataSource!:MatTableDataSource<Fokontany>;
+  dataSource!:MatTableDataSource<any>;
 
   allFokontany:Fokontany[] = [];
 
@@ -78,9 +78,11 @@ export class MainComponent implements OnInit {
     this.apiFokontany.getAllFokontany().subscribe(
       data => {
         this.allFokontany = data;
-        this.dataSource = new MatTableDataSource(this.allFokontany);
+        var output = this.allFokontany.map( (s:any) => ({libelle:s.libellé}) );
+        this.dataSource = new MatTableDataSource(output);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        document.querySelector('.mat-paginator-page-size-label')!.innerHTML = "Eléments par page:";
       },
       err => {
         console.log(err);;
